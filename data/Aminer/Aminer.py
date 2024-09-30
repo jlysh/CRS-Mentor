@@ -6,7 +6,7 @@ input_file = './AMiner-Paper/AMiner-Paper.txt'
 output_file = 'aminer_data.csv'
 output_file_mini = 'aminer_data_mini.csv'
 # Limit the number of records that can be saved
-max_records = 13000
+max_records = 12000
 
 def extract_data(input_file, output_file):
     # Open the input file and output CSV file

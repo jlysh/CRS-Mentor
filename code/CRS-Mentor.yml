@@ -1,0 +1,1156 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: advanced-chat
+  name: CRS-Mentor(new)
+  use_icon_as_answer_icon: false
+kind: app
+version: 0.1.2
+workflow:
+  conversation_variables:
+  - description: ''
+    id: 04367192-c89f-41e5-8e6c-729a5214b374
+    name: currentPaper
+    value: []
+    value_type: array[string]
+  - description: 当前对话轮数
+    id: c33bd196-c7cf-49dd-b390-add8ca2038d7
+    name: dialogue_count
+    value: 1
+    value_type: number
+  - description: 成功被推荐的论文列表
+    id: f16e846c-378d-430b-98b4-a03ccea544f7
+    name: paper
+    value: []
+    value_type: array[string]
+  - description: '融合所有轮次的专家建议
+
+      及
+
+      用户所有轮次输入的query'
+    id: 5e98f864-7734-4b62-aac5-4b46ca1c6f60
+    name: mergeSuggests
+    value: []
+    value_type: array[string]
+  - description: AI助手提取出的关键词
+    id: 362d7c77-0ad1-44ef-a88c-db1fda97f0aa
+    name: keyword
+    value: '""'
+    value_type: string
+  - description: 专家们第i轮的建议
+    id: 4edb5b4c-b96e-4018-b49c-9559756ce8db
+    name: mentorSuggests
+    value: “”
+    value_type: string
+  environment_variables: []
+  features:
+    file_upload:
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+    opening_statement: ''
+    retriever_resource:
+      enabled: false
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: if-else
+      id: 1724912630775-source-1724914124744-target
+      selected: false
+      source: '1724912630775'
+      sourceHandle: source
+      target: '1724914124744'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: parameter-extractor
+        targetType: answer
+      id: 1727178018103-source-1727177800321-target
+      selected: false
+      source: '1727178018103'
+      sourceHandle: source
+      target: '1727177800321'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: parameter-extractor
+      id: 1724914124744-false-1727178018103-target
+      selected: false
+      source: '1724914124744'
+      sourceHandle: 'false'
+      target: '1727178018103'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: knowledge-retrieval
+        targetType: llm
+      id: 1727180465722-source-1727180544765-target
+      source: '1727180465722'
+      sourceHandle: source
+      target: '1727180544765'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: llm
+      id: 1727180544765-source-1727180629464-target
+      source: '1727180544765'
+      sourceHandle: source
+      target: '1727180629464'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: if-else
+      id: 1727180629464-source-1727180677736-target
+      source: '1727180629464'
+      sourceHandle: source
+      target: '1727180677736'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: llm
+      id: 1727180677736-true-1727180772764-target
+      source: '1727180677736'
+      sourceHandle: 'true'
+      target: '1727180772764'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: answer
+      id: 1727180772764-source-1727180796268-target
+      source: '1727180772764'
+      sourceHandle: source
+      target: '1727180796268'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: assigner
+      id: 1727224565060-source-1727224620131-target
+      source: '1727224565060'
+      sourceHandle: source
+      target: '1727224620131'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: assigner
+        targetType: code
+      id: 1727180356227-source-1727224565060-target
+      source: '1727180356227'
+      sourceHandle: source
+      target: '1727224565060'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: assigner
+        targetType: parameter-extractor
+      id: 1727224620131-source-1727178018103-target
+      source: '1727224620131'
+      sourceHandle: source
+      target: '1727178018103'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: answer
+      id: 1727308854275-source-1727225897256-target
+      source: '1727308854275'
+      sourceHandle: source
+      target: '1727225897256'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: parameter-extractor
+      id: 1727180677736-9940ada3-6b25-47a2-a2b9-e96ea99dbf0a-1727309286329-target
+      source: '1727180677736'
+      sourceHandle: 9940ada3-6b25-47a2-a2b9-e96ea99dbf0a
+      target: '1727309286329'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: parameter-extractor
+        targetType: answer
+      id: 1727309286329-source-1727225031313-target
+      source: '1727309286329'
+      sourceHandle: source
+      target: '1727225031313'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: assigner
+      id: 1727308854275-source-1727310403398-target
+      source: '1727308854275'
+      sourceHandle: source
+      target: '1727310403398'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: parameter-extractor
+        targetType: code
+      id: 1727309286329-source-1727308854275-target
+      source: '1727309286329'
+      sourceHandle: source
+      target: '1727308854275'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: assigner
+      id: 1727180772764-source-1727180921717-target
+      source: '1727180772764'
+      sourceHandle: source
+      target: '1727180921717'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: parameter-extractor
+        targetType: knowledge-retrieval
+      id: 1727178018103-source-1727180465722-target
+      source: '1727178018103'
+      sourceHandle: source
+      target: '1727180465722'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: assigner
+      id: 17273112400530-source-1727311287011-target
+      source: '17273112400530'
+      sourceHandle: source
+      target: '1727311287011'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: assigner
+        targetType: code
+      id: 1727310403398-source-17273112400530-target
+      source: '1727310403398'
+      sourceHandle: source
+      target: '17273112400530'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: assigner
+        targetType: code
+      id: 1727180921717-source-17273112400530-target
+      source: '1727180921717'
+      sourceHandle: source
+      target: '17273112400530'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: assigner
+        targetType: if-else
+      id: 1727311287011-source-1727311311124-target
+      source: '1727311287011'
+      sourceHandle: source
+      target: '1727311311124'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: answer
+      id: 1724914124744-true-1727177508710-target
+      source: '1724914124744'
+      sourceHandle: 'true'
+      target: '1727177508710'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: answer
+        targetType: assigner
+      id: 1727177508710-source-1727180356227-target
+      source: '1727177508710'
+      sourceHandle: source
+      target: '1727180356227'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: answer
+      id: 1727311311124-true-1727350861553-target
+      source: '1727311311124'
+      sourceHandle: 'true'
+      target: '1727350861553'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables: []
+      height: 52
+      id: '1724912630775'
+      position:
+        x: 30
+        y: 276
+      positionAbsolute:
+        x: 30
+        y: 276
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: '='
+            id: 1ee333ec-2e02-4644-84c1-6e2ec78e1623
+            value: '1'
+            varType: number
+            variable_selector:
+            - sys
+            - dialogue_count
+          id: 'true'
+          logical_operator: and
+        desc: 初次启动会话时, 并行运行
+        selected: false
+        title: 是否首轮对话
+        type: if-else
+      height: 152
+      id: '1724914124744'
+      position:
+        x: 333
+        y: 276
+      positionAbsolute:
+        x: 333
+        y: 276
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        answer: 请输入你想要检索的论文？
+        desc: ''
+        selected: false
+        title: 直接回复 2
+        type: answer
+        variables: []
+      height: 102
+      id: '1727177508710'
+      position:
+        x: 636
+        y: 371
+      positionAbsolute:
+        x: 636
+        y: 371
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        instruction: "\n```xml\n<instructions>\n    <step>1.</step>\n    <description>仔细阅读用户输入的问题、AI助手检索结果、专家评审结果及建议。</description>\n\
+          </instructions>\n<instructions>\n    <step>2.</step>\n    <description>从问题中提取出3个以内的关键词。</description>\n\
+          </instructions>\n<instructions>\n    <step>3.</step>\n    <description>你识别出的关键词需要去除停用词：论文、文章、和、或、结合、连接等介词连词。</description>\n\
+          </instructions>\n<instructions>\n    <step>4.</step>\n    <description>考虑同义词，确保关键词的覆盖范围广泛。</description>\n\
+          </instructions>\n<instructions>\n    <step>5.</step>\n    <description>确保关键词之间没有重复，且不包含任何多余的废话。</description>\n\
+          </instructions>\n<instructions>\n    <step>6.</step>\n    <description>将提取出的关键词以中文形式列出，用逗号分隔。</description>\n\
+          </instructions>\n<examples>\n    <example>\n        <input>用户输入：我想要查找智能财务报表相关的论文</input>\n\
+          \        <output>关键词：财务、智能、报表</output>\n    </example>\n    <example>\n\
+          \        <input>用户输入：请推荐一些关于人工智能在教育领域的应用案例</input>\n        <output>关键词：人工智能、教育、应用</output>\n\
+          \    </example>\n    <example>\n        <input>用户输入：我想了解最新的5G通信技术在智能家居中的应用</input>\n\
+          \        <output>关键词：5G、通信技术、智能家居</output>\n    </example>\n</examples>\n\
+          ```"
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: glm4-chat
+          provider: xinference
+        parameters:
+        - description: AI助手根据用户输入，总结并识别出来的关键词
+          name: keyword
+          required: false
+          type: string
+        query:
+        - conversation
+        - mentorSuggests
+        reasoning_mode: prompt
+        selected: false
+        title: AI助手
+        type: parameter-extractor
+        variables: []
+      height: 96
+      id: '1727178018103'
+      position:
+        x: 1848
+        y: 276
+      positionAbsolute:
+        x: 1848
+        y: 276
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        answer: '
+
+          当前轮次{{#sys.dialogue_count#}}，AI助手识别出的关键词如下：
+
+
+          {{#1727178018103.keyword#}}
+
+
+          '
+        desc: ''
+        selected: false
+        title: AI助手识别出的关键词
+        type: answer
+        variables: []
+      height: 141
+      id: '1727177800321'
+      position:
+        x: 2151
+        y: 276
+      positionAbsolute:
+        x: 2151
+        y: 276
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        assigned_variable_selector:
+        - conversation
+        - mentorSuggests
+        desc: ''
+        input_variable_selector:
+        - sys
+        - query
+        selected: false
+        title: 首轮对话
+        type: assigner
+        write_mode: over-write
+      height: 130
+      id: '1727180356227'
+      position:
+        x: 939
+        y: 371
+      positionAbsolute:
+        x: 939
+        y: 371
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        dataset_ids:
+        - 5c9bd4de-62ee-4f30-a090-81b67c782cae
+        desc: ''
+        multiple_retrieval_config:
+          reranking_enable: true
+          reranking_mode: weighted_score
+          reranking_model:
+            model: bce-reranker-base_v1
+            provider: xinference
+          score_threshold: null
+          top_k: 4
+          weights:
+            keyword_setting:
+              keyword_weight: 0
+            vector_setting:
+              embedding_model_name: bce-embedding-base_v1
+              embedding_provider_name: xinference
+              vector_weight: 1
+        query_variable_selector:
+        - '1724912630775'
+        - sys.query
+        retrieval_mode: multiple
+        selected: false
+        title: AI助手检索内容库
+        type: knowledge-retrieval
+      height: 90
+      id: '1727180465722'
+      position:
+        x: 2151
+        y: 457
+      positionAbsolute:
+        x: 2151
+        y: 457
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1727180465722'
+          - result
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: glm4-chat
+          provider: xinference
+        prompt_template:
+        - id: 3b3e0588-6816-4de1-9afc-4f29c1a49007
+          role: system
+          text: '有序整理并输出AI助手检索到的论文，只保留论文标题与论文摘要，并将摘要部分中文，不要有多余废话。
+
+            {{#context#}}'
+        selected: false
+        title: 整理AI助手检索回的论文
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 96
+      id: '1727180544765'
+      position:
+        x: 2454
+        y: 431.5
+      positionAbsolute:
+        x: 2454
+        y: 431.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1727180544765'
+          - text
+        desc: ''
+        memory:
+          query_prompt_template: '{{#sys.query#}}'
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: false
+            size: 50
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: glm4-chat
+          provider: xinference
+        prompt_template:
+        - id: 429f3d43-0e01-472c-aec7-12eaced3701e
+          role: system
+          text: "当面对一项任务时，首先你需要根据用户给出的检索问题来确定将为解决任务做出贡献的参与者。然后，启动专家团队评审，认真评审AI助手给出的每一篇论文，直到全部的专家都认同AI助手给出的文献检索结果。参与者将在必要时提出批评意见和详细建议。\n\
+            以下是一些示例：\n示例任务 1：\n用户输入：请给我推荐一个和基于量子纠缠的机器学习相关的论文\n\nAI助手：推荐结果如下：{\nTitle:\
+            \ BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding\n\
+            Author: Jacob Devlin, Ming-Wei Chang, Kenton Lee, Kristina Toutanova\n\
+            Abstract:\nWe introduce a new language representation model called BERT,\
+            \ which stands for Bidirectional Encoder Representations from Transformers.\
+            \ Unlike recent language representation models, BERT is designed to pre-train\
+            \ deep bidirectional representations by jointly conditioning on both left\
+            \ and right context in all layers. As a result, the pre-trained BERT model\
+            \ can be fine-tuned with just one additional output layer to create state-of-the-art\
+            \ models for a wide range of tasks, such as question answering and language\
+            \ inference, without substantial task-specific architecture modifications.\
+            \ BERT is conceptually simple and empirically powerful. It achieves new\
+            \ state-of-the-art results on eleven natural language processing tasks,\
+            \ including pushing the GLUE score to 80.4% (a 7.6% absolute improvement),\
+            \ MultiNLI accuracy to 86.7% (a 4.6% absolute improvement), SQuAD v1.1\
+            \ question answering Test F1 to 93.2 (a 1.5 point absolute improvement)\
+            \ and SQuAD v2.0 Test F1 to 83.1 (a 5.1 point absolute improvement).\n\
+            Date: October 11, 2018\nThis paper is pivotal in the field of natural\
+            \ language processing and has significantly influenced various applications\
+            \ of machine learning.\n}\n\n参与者:AI助手;量子领域专家；机器学习领域专家\n开始评估！\n量子领域专家：让我们详细分析一下AI助手给出的推荐结果。首先从标题来看，是和深度学习有关的，即和机器学习有关系，没有提到量子，所以与量子纠缠没关系；接着看再一下摘要，摘要只提到了BERT和机器学习，但没有提到量子纠缠，所以这篇论文与量子领域没有关系，不满足用户想要查询的条件，建议AI助手下次检索的论文是与量子领域相关的\n\
+            \n机器学习领域专家：根据标题来看，该论文是与机器学习相关的，我认可AI助手得到的检索结果\n\n{\nresult:不通过\nsuggest\"\
+            你给出的结果和量子纠缠没有关系，下一次的检索结果应该是在基于用户给定输入的基础上再和量子领域相关\"\n}\n\n\n---------------------\n\
+            示例任务 2：\n用户输入：请给我推荐一篇协同过滤应用于医疗领域的论文\n\nAI助手：推荐结果如下：{\nTitle: Collaborative\
+            \ Filtering for Improved Drug-Drug Interaction Prediction\nAuthor: Emma\
+            \ Wang, David M. Blei, Nicholas P. Tatonetti\nAbstract:\nThe prediction\
+            \ of drug-drug interactions (DDIs) is a crucial task in drug safety and\
+            \ patient care, as DDIs can lead to adverse effects or reduce therapeutic\
+            \ efficacy. Traditional methods for DDI prediction often rely on domain-specific\
+            \ knowledge or biological data, which can be limited or unavailable. In\
+            \ this paper, we propose a novel approach to DDI prediction using collaborative\
+            \ filtering, a technique commonly used in recommendation systems. By treating\
+            \ drugs and their interactions as a matrix, we apply collaborative filtering\
+            \ to uncover latent patterns and predict potential interactions. We evaluate\
+            \ our method on a large dataset of known DDIs and demonstrate that it\
+            \ outperforms existing approaches in terms of accuracy and coverage. Our\
+            \ results suggest that collaborative filtering is a powerful tool for\
+            \ enhancing drug safety and could be integrated into pharmacovigilance\
+            \ systems to identify dangerous drug combinations before they reach the\
+            \ market.}\n}\n\n参与者:AI助手;量推荐系统领域专家；医疗领域专家\n开始评估！\n推荐系统领域专家：让我们详细分析一下AI助手给出的推荐结果。首先从标题来看，标题提到了协同过滤，再看下摘要，摘要中也是提到了协同过滤，所以我觉得AI助手给出的检索结果是非常好的\n\
+            \n医疗领域专家：根据标题来看，该论文标题提到了DDI，即药物相互作用，所以是和医疗领域相关的，再看下摘要，论文中也多次提到了医疗领域的专业名称，所以我也认为AI助手给出的检索结果是很好的。\n\
+            \n{\nresult：通过\nacceptedPapers：\n1.标题：Collaborative Filtering for Improved\
+            \ Drug-Drug Interaction Prediction\n   摘要：The prediction of drug-drug\
+            \ interactions (DDIs) is a crucial task in drug safety and patient care,\
+            \ as DDIs can lead to adverse effects or reduce therapeutic efficacy.\
+            \ Traditional methods for DDI prediction often rely on domain-specific\
+            \ knowledge or biological data, which can be limited or unavailable. In\
+            \ this paper, we propose a novel approach to DDI prediction using collaborative\
+            \ filtering, a technique commonly used in recommendation systems. By treating\
+            \ drugs and their interactions as a matrix, we apply collaborative filtering\
+            \ to uncover latent patterns and predict potential interactions. We evaluate\
+            \ our method on a large dataset of known DDIs and demonstrate that it\
+            \ outperforms existing approaches in terms of accuracy and coverage. Our\
+            \ results suggest that collaborative filtering is a powerful tool for\
+            \ enhancing drug safety and could be integrated into pharmacovigilance\
+            \ systems to identify dangerous drug combinations before they reach the\
+            \ market\n}\n---------------------\n\n\n以上是一些具体的示例，那么现在开始你的任务：首先，确定参与者，并逐步协作解决以下任务。记得用前缀“最终答案：”表示最终解决方案。请注意最终答案严格按照所给格式，如果是符合条件的则result+title；否则result+retrieval，注意retrieval的内容是重新检索加入专家意见的更全面的新内容，而不是建议原因，也不是跟user_input一样，此外识别出的专家数目不要太多，要求控制在3个以内.\n\
+            特别的：你在输出时要将得到的上下文转为中文\n用户输入：{{#sys.query#}}\n\nAI助手：所得到的文章如下：\n{{#context#}}"
+        selected: false
+        title: 专家导师评审
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 96
+      id: '1727180629464'
+      position:
+        x: 2757
+        y: 431.5
+      positionAbsolute:
+        x: 2757
+        y: 431.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: contains
+            id: 1443d535-ff14-4c86-aaa2-c968d3ce0503
+            value: 不通过
+            varType: string
+            variable_selector:
+            - '1727180629464'
+            - text
+          id: 'true'
+          logical_operator: and
+        - case_id: 9940ada3-6b25-47a2-a2b9-e96ea99dbf0a
+          conditions:
+          - comparison_operator: contains
+            id: ac656443-ac8b-43fb-97a4-478c61cf96b2
+            value: 通过
+            varType: string
+            variable_selector:
+            - '1727180629464'
+            - text
+          - comparison_operator: contains
+            id: 686bc4cc-de54-49d5-9fa9-5dd4f0e70eb6
+            value: 部分通过
+            varType: string
+            variable_selector:
+            - '1727180629464'
+            - text
+          id: 9940ada3-6b25-47a2-a2b9-e96ea99dbf0a
+          logical_operator: or
+        desc: ''
+        selected: false
+        title: 是否为一次正确推荐
+        type: if-else
+      height: 198
+      id: '1727180677736'
+      position:
+        x: 3060
+        y: 431.5
+      positionAbsolute:
+        x: 3060
+        y: 431.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1727180544765'
+          - text
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: glm4-chat
+          provider: xinference
+        prompt_template:
+        - id: b8389a39-3679-4592-b9e6-afb39d986bf9
+          role: system
+          text: '根据上下文整理并有序输出给出专家对论文的建议,转为关键词(五个以内)并与用户的初始查询进行融合，去除相关性较低的关键词，不要有多余废话。
+
+            专家给出的建议：{{#context#}}
+
+            用户输入：{{#sys.query#}}
+
+            AI助手识别出的关键词：{{#1727178018103.keyword#}}'
+        selected: false
+        title: 不被采纳时的建议
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 96
+      id: '1727180772764'
+      position:
+        x: 3666
+        y: 431.5
+      positionAbsolute:
+        x: 3666
+        y: 431.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        answer: 'CRS-Mentor评审过程：
+
+          {{#1727180629464.text#}}
+
+
+          本轮推荐结果不满意：专家给出的建议如下：
+
+          {{#1727180772764.text#}}'
+        desc: ''
+        selected: false
+        title: 不采纳
+        type: answer
+        variables: []
+      height: 157
+      id: '1727180796268'
+      position:
+        x: 3969
+        y: 431.5
+      positionAbsolute:
+        x: 3969
+        y: 431.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        assigned_variable_selector:
+        - conversation
+        - mergeSuggests
+        desc: ''
+        input_variable_selector:
+        - '1727180772764'
+        - text
+        selected: false
+        title: 添加专家给出的建议
+        type: assigner
+        write_mode: append
+      height: 130
+      id: '1727180921717'
+      position:
+        x: 3969
+        y: 628.5
+      positionAbsolute:
+        x: 3969
+        y: 628.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        code: "\ndef main():\n    data = 2\n    return {\n        \"result\": data,\n\
+          \    }\n"
+        code_language: python3
+        desc: ''
+        outputs:
+          result:
+            children: null
+            type: number
+        selected: false
+        title: 输出2
+        type: code
+        variables: []
+      height: 52
+      id: '1727224565060'
+      position:
+        x: 1242
+        y: 371
+      positionAbsolute:
+        x: 1242
+        y: 371
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        assigned_variable_selector:
+        - conversation
+        - dialogue_count
+        desc: ''
+        input_variable_selector:
+        - '1727224565060'
+        - result
+        selected: false
+        title: 变量赋值（判断第一轮对话）
+        type: assigner
+        write_mode: over-write
+      height: 130
+      id: '1727224620131'
+      position:
+        x: 1545
+        y: 371
+      positionAbsolute:
+        x: 1545
+        y: 371
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        answer: '已通过专家评审，本次建议采纳：
+
+
+
+          '
+        desc: ''
+        selected: false
+        title: 采纳
+        type: answer
+        variables: []
+      height: 102
+      id: '1727225031313'
+      position:
+        x: 3666
+        y: 647
+      positionAbsolute:
+        x: 3666
+        y: 647
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        answer: '当前候选集被采纳的论文如下：
+
+
+          {{#1727308854275.paperStr#}}'
+        desc: ''
+        selected: false
+        title: 直接回复 5
+        type: answer
+        variables: []
+      height: 122
+      id: '1727225897256'
+      position:
+        x: 3969
+        y: 798.5
+      positionAbsolute:
+        x: 3969
+        y: 798.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        code: "def main(paper, currentPaper) -> dict:\n    paper.extend(currentPaper)\n\
+          \    return {\n        \"paperStr\": '\\n'.join(paper),\n        \"paperList\"\
+          : paper\n    }"
+        code_language: python3
+        desc: 输出结果
+        outputs:
+          paperList:
+            children: null
+            type: array[string]
+          paperStr:
+            children: null
+            type: string
+        selected: false
+        title: 当前轮次采纳添加到候选集列表
+        type: code
+        variables:
+        - value_selector:
+          - '1727309286329'
+          - currentPaper
+          variable: currentPaper
+        - value_selector:
+          - conversation
+          - paper
+          variable: paper
+      height: 80
+      id: '1727308854275'
+      position:
+        x: 3666
+        y: 789
+      positionAbsolute:
+        x: 3666
+        y: 789
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        instruction: '将采纳的论文(标题、摘要)进行整理，去除多余不相干内容，转为字典列表类型，输出结果示例：[{''title'':'''',''summary'':''''}]，不要有多余废话。被采纳的论文如下：
+
+          {{#1727180629464.text#}}'
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: glm4-chat
+          provider: xinference
+        parameters:
+        - description: '当前轮次被采纳的论文(包含标题和摘要)
+
+            示例：[
+
+            ''标题1:xxx ; \n 摘要1：xxx ; \n '',
+
+            ''标题2:xxx ; \n 摘要2：xxx ; \n '',
+
+            ]'
+          name: currentPaper
+          required: true
+          type: array[string]
+        query:
+        - '1727180629464'
+        - text
+        reasoning_mode: prompt
+        selected: false
+        title: 整理被采纳的论文
+        type: parameter-extractor
+        variables: []
+      height: 96
+      id: '1727309286329'
+      position:
+        x: 3363
+        y: 650
+      positionAbsolute:
+        x: 3363
+        y: 650
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        assigned_variable_selector:
+        - conversation
+        - paper
+        desc: ''
+        input_variable_selector:
+        - '1727308854275'
+        - paperList
+        selected: false
+        title: 添加数据到paper列表中
+        type: assigner
+        write_mode: over-write
+      height: 130
+      id: '1727310403398'
+      position:
+        x: 3969
+        y: 960.5
+      positionAbsolute:
+        x: 3969
+        y: 960.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        code: "\ndef main(dialogue_count):\n    return {\n        \"dialogue_count\"\
+          : dialogue_count+1,\n    }\n"
+        code_language: python3
+        desc: ''
+        outputs:
+          dialogue_count:
+            children: null
+            type: number
+        selected: false
+        title: 对话轮次+1
+        type: code
+        variables:
+        - value_selector:
+          - conversation
+          - dialogue_count
+          variable: dialogue_count
+      height: 52
+      id: '17273112400530'
+      position:
+        x: 4272
+        y: 615
+      positionAbsolute:
+        x: 4272
+        y: 615
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        assigned_variable_selector:
+        - conversation
+        - dialogue_count
+        desc: ''
+        input_variable_selector:
+        - '17273112400530'
+        - dialogue_count
+        selected: false
+        title: 变量赋值 5
+        type: assigner
+        write_mode: over-write
+      height: 130
+      id: '1727311287011'
+      position:
+        x: 4575
+        y: 615
+      positionAbsolute:
+        x: 4575
+        y: 615
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: ≤
+            id: 9b952bc6-fb91-4c18-899f-b91f694e2d74
+            value: '5'
+            varType: number
+            variable_selector:
+            - '17273112400530'
+            - dialogue_count
+          id: 'true'
+          logical_operator: and
+        desc: 若对话轮次小于等于5，则继续迭代
+        selected: false
+        title: 若对话轮次小于等于5，则继续迭代
+        type: if-else
+      height: 152
+      id: '1727311311124'
+      position:
+        x: 4878
+        y: 615
+      positionAbsolute:
+        x: 4878
+        y: 615
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        answer: '
+
+          当前对话轮次/总对话轮次：{{#17273112400530.dialogue_count#}}/5
+
+          '
+        desc: ''
+        selected: true
+        title: 直接回复 6
+        type: answer
+        variables: []
+      height: 122
+      id: '1727350861553'
+      position:
+        x: 5181
+        y: 615
+      positionAbsolute:
+        x: 5181
+        y: 615
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    viewport:
+      x: 25.000000000000057
+      y: 283
+      zoom: 0.7
