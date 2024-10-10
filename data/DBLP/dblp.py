@@ -1,9 +1,10 @@
 import csv
 import json
 import logging
-import ijson
-import re
 import os
+import re
+
+import ijson
 
 # Constants
 YEAR_THRESHOLD = 2015  # Year threshold for filtering data
@@ -19,6 +20,7 @@ Filter out records without a year
 Filter out records without an abstract
 Keep approximately {MAX_FILE_SIZE_MB}MB of data
 '''
+
 
 # Read a chunk of source data and fix JSON issues
 def readChunk(path, out_path, chunk_size=1024 * 1024 * 100):
@@ -49,6 +51,7 @@ def readChunk(path, out_path, chunk_size=1024 * 1024 * 100):
 
     return chunk_count
 
+
 def is_valid(record):
     # Check if the title contains only digits
     if record['title'].isdigit():
@@ -59,9 +62,10 @@ def is_valid(record):
         return False
 
     # Filter out titles, authors, and abstracts with non-printable characters
-    if not record['title'].isprintable() or not ','.join([author.get('name', '') for author in record['authors']]).isprintable() or not record['abstract'].isprintable():
+    if not record['title'].isprintable() or not ','.join(
+            [author.get('name', '') for author in record['authors']]).isprintable() or not record[
+        'abstract'].isprintable():
         return False
-
     return True
 
 def extract_and_save_to_csv(file_path, output_csv_path):
@@ -119,7 +123,8 @@ def extract_and_save_to_csv(file_path, output_csv_path):
 
                         # Print a progress log
                         if current_records % 1000 == 0:
-                            logging.info(f"Data that has been written to {current_records}".format(current_records=current_records))
+                            logging.info(f"Data that has been written to {current_records}".format(
+                                current_records=current_records))
                     except Exception as e:
                         logging.error(f"Error processing record: {e}")
                         continue
@@ -130,14 +135,13 @@ def extract_and_save_to_csv(file_path, output_csv_path):
             except Exception as e:
                 logging.error(f"Unexpected error: {e}")
 
-# 设置日志
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 # Process the source data and save it as a JSON intermediate file
 source_file_path = './DBLP-Paper/dblp_v14.json'
 file_path = './DBLP-Paper/dblp_v14.json.json'
 logging.info("Processing readChunk method...")
-# readChunk(source_file_path, file_path, chunk_size=1024 * 1024 * 100)
+readChunk(source_file_path, file_path, chunk_size=1024 * 1024 * 100)
 
 # Process the extracted data and save it as a final CSV file
 dblp_csv_path = './DBLP-Paper/dbpl_data_mini.csv'

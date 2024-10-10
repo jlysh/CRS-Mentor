@@ -104,5 +104,5 @@ def extract_data_with_abstract(input_file, output_file_mini):
 
 
 # Call the function
-# extract_data(input_file, output_file)
+extract_data(input_file, output_file)
 extract_data_with_abstract(output_file, output_file_mini)
