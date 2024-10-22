@@ -5,8 +5,9 @@ import logging
 input_file = './AMiner-Paper/AMiner-Paper.txt'
 output_file = 'aminer_data.csv'
 output_file_mini = 'aminer_data_mini.csv'
-# Limit the size of the output file
-MAX_FILE_SIZE_MB = 15
+YEAR_THRESHOLD = 2014  # Year threshold for filtering data
+MIN_WORDS_IN_TITLE = 7  # Minimum number of words in the title
+MAX_FILE_SIZE_MB = 14  # Limit the size of the output file
 
 
 # Clean the source dataset
@@ -28,37 +29,46 @@ def extract_data(input_file, output_file):
         # Read files line by line
         for line in infile:
             line = line.strip()
+            try:
+                # Determine the field based on the prefix of the row
+                if line.startswith('#index'):
+                    if record and 'Abstract' in record:
+                        if len(record.get('Title', '').split()) <= MIN_WORDS_IN_TITLE:
+                            continue
+                        # Check if the year is after {YEAR_THRESHOLD}
+                        if int(record.get('Year', '1970')) < YEAR_THRESHOLD:
+                            continue
+                        writer.writerow([record.get('Index', ''), record.get('Title', ''), record.get('Authors', ''),
+                                         record.get('Affiliations', ''), record.get('Year', ''), record.get('Venue', ''),
+                                         record.get('Abstract', '')])
+                        record_count += 1
+                        if record_count % 1000 == 0:
+                            logging.info(f'{record_count} records have been written to {output_file}')
+                    record = {}
+                    record['Index'] = line.split()[-1]
 
-            # Determine the field based on the prefix of the row
-            if line.startswith('#index'):
-                if record and 'Abstract' in record:
-                    writer.writerow([record.get('Index', ''), record.get('Title', ''), record.get('Authors', ''),
-                                     record.get('Affiliations', ''), record.get('Year', ''), record.get('Venue', ''),
-                                     record.get('Abstract', '')])
-                    record_count += 1
-                    if record_count % 1000 == 0:
-                        logging.info(f'{record_count} records have been written to {output_file}')
-                record = {}
-                record['Index'] = line.split()[-1]
+                elif line.startswith('#*'):
+                    record['Title'] = ' '.join(line.split()[1:])
 
-            elif line.startswith('#*'):
-                record['Title'] = ' '.join(line.split()[1:])
+                elif line.startswith('#@'):
+                    record['Authors'] = ' '.join(line.split()[1:])
 
-            elif line.startswith('#@'):
-                record['Authors'] = ' '.join(line.split()[1:])
+                elif line.startswith('#o'):
+                    record['Affiliations'] = ' '.join(line.split()[1:])
 
-            elif line.startswith('#o'):
-                record['Affiliations'] = ' '.join(line.split()[1:])
+                elif line.startswith('#t'):
+                    record['Year'] = line.split()[-1]
+                    # Check if the year is after {YEAR_THRESHOLD}
+                    if int(record.get('Year', '1970')) < YEAR_THRESHOLD:
+                        continue
+                elif line.startswith('#c'):
+                    record['Venue'] = ' '.join(line.split()[1:])
 
-            elif line.startswith('#t'):
-                record['Year'] = line.split()[-1]
-
-            elif line.startswith('#c'):
-                record['Venue'] = ' '.join(line.split()[1:])
-
-            elif line.startswith('#!'):
-                record['Abstract'] = ' '.join(line.split()[1:])
-
+                elif line.startswith('#!'):
+                    record['Abstract'] = ' '.join(line.split()[1:])
+            except:
+                logging.warning(f'Error processing line: {line}')
+                continue
         # Write the last record
         if record and 'Abstract' in record:
             writer.writerow([record.get('Index', ''), record.get('Title', ''), record.get('Authors', ''),

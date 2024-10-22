@@ -8,7 +8,7 @@ import ijson
 
 # Constants
 YEAR_THRESHOLD = 2015  # Year threshold for filtering data
-MAX_FILE_SIZE_MB = 15  # Maximum file size in MB
+MAX_FILE_SIZE_MB = 14  # Maximum file size in MB
 MIN_WORDS_IN_TITLE = 7  # Minimum number of words in the title
 
 '''

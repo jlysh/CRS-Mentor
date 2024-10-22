@@ -17,7 +17,7 @@ CRS-Mentor
 
 ** [AMiner-Paper.txt](AMiner-Paper%2FAMiner-Paper.txt) 原数据集 2,092,356 条数据
 
-** [aminer_data_mini.csv](aminer_data_mini.csv) 处理过的精简后的数据集 14,341 条数据
+** [aminer_data_mini.csv](aminer_data_mini.csv) 处理过的精简后的数据集 10,255 条数据
 
 *** DBLP ***
 
@@ -29,7 +29,7 @@ CRS-Mentor
 
 ** [dblp_v14.json](data%2FDBLP%2FDBLP-Paper%2Fdblp_v14.json) 原数据集 5,259,858 条数据
 
-** [dbpl_data_mini.csv](data%2FDBLP%2FDBLP-Paper%2Fdbpl_data_mini.csv) 处理过的精简后的数据集 12,259 条数据
+** [dbpl_data_mini.csv](data%2FDBLP%2FDBLP-Paper%2Fdbpl_data_mini.csv) 处理过的精简后的数据集 11,431 条数据
 
 *** 实验代码 ***
 
