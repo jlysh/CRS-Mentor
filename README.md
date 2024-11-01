@@ -1,36 +1,36 @@
 # CRS-Mentor
 CRS-Mentor
 
-*** 使用模型 ***
+*** Model ***
 ** LANGUAGE MODELS: glm4-chat
 ** EMBEDDING MODELS: bce-embedding-base_v1
 ** RERANK MODELS: bce-reranker-base_v1
 
 
-*** 使用数据集***
+*** Dataset ***
 
 *** Aminer ***
 
-** 数据集地址 https://www.aminer.cn/aminernetwork
+** Dataset Address **: https://www.aminer.cn/aminernetwork
 
-** [Aminer.py](Aminer.py)Aminer.py 处理Aminer数据集代码
+** [Aminer.py](Aminer.py)Aminer.py Processing Aminer Dataset Code
 
-** [AMiner-Paper.txt](AMiner-Paper%2FAMiner-Paper.txt) 原数据集 2,092,356 条数据
+** [AMiner-Paper.txt](AMiner-Paper%2FAMiner-Paper.txt) The original dataset is 2,092,356 pieces of data
 
-** [aminer_data_mini.csv](aminer_data_mini.csv) 处理过的精简后的数据集 10,255 条数据
+** [aminer_data_mini.csv](aminer_data_mini.csv) The processed streamlined dataset consists of 10,737 pieces of data
 
 *** DBLP ***
 
-** 原始数据集地址：https://dblp.uni-trier.de/xml/
+** Original dataset address:https://dblp.uni-trier.de/xml/
 
-** 处理后数据集地址 https://www.aminer.cn/citation
+** The address of the processed dataset: https://www.aminer.cn/citation
 
-** [dblp.py](data%2FDBLP%2Fdblp.py) 处理DBLP数据集代码(实验使用的DBLP-Citation-network V14数据集)
+** [dblp.py](data%2FDBLP%2Fdblp.py) Processing DBLP dataset code (DBLP-Citation-network V14 dataset used in the experiment)
 
-** [dblp_v14.json](data%2FDBLP%2FDBLP-Paper%2Fdblp_v14.json) 原数据集 5,259,858 条数据
+** [dblp_v14.json](data%2FDBLP%2FDBLP-Paper%2Fdblp_v14.json) The original dataset is 5,259,858 pieces of data
 
-** [dbpl_data_mini.csv](data%2FDBLP%2FDBLP-Paper%2Fdbpl_data_mini.csv) 处理过的精简后的数据集 11,431 条数据
+** [dbpl_data_mini.csv](data%2FDBLP%2FDBLP-Paper%2Fdbpl_data_mini.csv) The processed streamlined dataset consists of 11,618 pieces of data
 
-*** 实验代码 ***
+*** Code ***
 
-** [code](code) CSR-Mentor代码
+** [code](code) CSR-Mentor code
